@@ -4,7 +4,7 @@ use strict;
 
 use vars qw($VERSION);
 
-$VERSION = 0.08;
+$VERSION = 0.0801;
 
 use DateTime 0.22;
 use DateTime::LeapSecond;
@@ -233,7 +233,7 @@ The unit parameter can be "seconds", "milliseconds, "microseconds" or
 "nanoseconds". The default is "seconds". If you need any other unit,
 you must specify the number of units per second. If you specify a number
 of units per second below 1, the unit will be longer than a second.  In
-this way, you can count days: unit => 84_600.
+this way, you can count days: unit => 1/86_400.
 
 The type parameter specifies the type of the return value. It can be
 "int" (returns integer value), "float" (returns floating point value),
