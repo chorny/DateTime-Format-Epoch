@@ -8,6 +8,13 @@ lib/DateTime/Format/Epoch/Unix.pm
 lib/DateTime/Format/Epoch/MacOS.pm
 lib/DateTime/Format/Epoch/TAI64.pm
 lib/DateTime/Format/Epoch/DotNet.pm
+lib/DateTime/Format/Epoch/ActiveDirectory.pm
+lib/DateTime/Format/Epoch/JD.pm
+lib/DateTime/Format/Epoch/MJD.pm
+lib/DateTime/Format/Epoch/TJD.pm
+lib/DateTime/Format/Epoch/RJD.pm
+lib/DateTime/Format/Epoch/RataDie.pm
+lib/DateTime/Format/Epoch/Lilian.pm
 t/001_load.t
 t/002_format.t
 t/003_bigint.t
@@ -25,5 +32,8 @@ t/302_format.t
 t/303_parse.t
 t/401_load.t
 t/402_format.t
+t/502_format.t
+t/601_load.t
+t/pod.t
 Makefile.PL
 META.yml                                Module meta-data (added by MakeMaker)

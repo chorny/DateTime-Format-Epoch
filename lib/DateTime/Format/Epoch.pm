@@ -4,7 +4,7 @@ use strict;
 
 use vars qw($VERSION);
 
-$VERSION = 0.07;
+$VERSION = 0.08;
 
 use DateTime 0.22;
 use DateTime::LeapSecond;
@@ -231,7 +231,9 @@ use the start_at parameter.
 
 The unit parameter can be "seconds", "milliseconds, "microseconds" or
 "nanoseconds". The default is "seconds". If you need any other unit,
-you must specify the number of units per second.
+you must specify the number of units per second. If you specify a number
+of units per second below 1, the unit will be longer than a second.  In
+this way, you can count days: unit => 84_600.
 
 The type parameter specifies the type of the return value. It can be
 "int" (returns integer value), "float" (returns floating point value),
@@ -270,6 +272,11 @@ Given a number of seconds, this method returns the corresponding
 DateTime object.
 
 =back
+
+=head1 BUGS
+
+I think there's a problem when you define a count that does not skip
+leap seconds, and uses the local timezone. Don't do that.
 
 =head1 SUPPORT
 

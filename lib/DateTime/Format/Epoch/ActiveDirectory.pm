@@ -1,4 +1,4 @@
-package DateTime::Format::Epoch::DotNet;
+package DateTime::Format::Epoch::ActiveDirectory;
 
 use strict;
 
@@ -11,7 +11,7 @@ use DateTime::Format::Epoch;
 
 @ISA = qw/DateTime::Format::Epoch/;
 
-my $epoch = DateTime->new( year => 1, month => 1, day => 1,
+my $epoch = DateTime->new( year => 1601, month => 1, day => 1,
                            time_zone => 'floating' );
 
 sub new {
@@ -20,7 +20,7 @@ sub new {
     return $class->SUPER::new( epoch => $epoch,
                                unit  => 1e7,
                                type  => 'bigint',
-                               local_epoch => 1,
+                               local_epoch => undef,
                                skip_leap_seconds => 1 );
 }
 
@@ -29,13 +29,13 @@ __END__
 
 =head1 NAME
 
-DateTime::Format::Epoch::DotNet - Convert DateTimes to/from .NET epoch seconds
+DateTime::Format::Epoch::ActiveDirectory -  Active Directory epoch seconds
 
 =head1 SYNOPSIS
 
-  use DateTime::Format::Epoch::DotNet;
+  use DateTime::Format::Epoch::ActiveDirectory;
 
-  my $formatter = DateTime::Format::Epoch::DotNet->new();
+  my $formatter = DateTime::Format::Epoch::ActiveDirectory->new();
 
   my $dt2 = $formatter->parse_datetime( 1051488000 );
 
@@ -46,7 +46,7 @@ DateTime::Format::Epoch::DotNet - Convert DateTimes to/from .NET epoch seconds
 
 This module can convert a DateTime object (or any object that can be
 converted to a DateTime object) to the number of seconds since the
-epoch defined in the .NET Framework SDK.
+epoch used in Microsoft Active Directory.
 
 Note that this epoch is defined in the I<local> time zone. This means
 that these two pieces of code will print the same number of seconds,
@@ -84,7 +84,7 @@ Eugene van der Pijll <pijll@gmx.net>
 
 =head1 COPYRIGHT
 
-Copyright (c) 2003 Eugene van der Pijll.  All rights reserved.  This
+Copyright (c) 2004 Eugene van der Pijll.  All rights reserved.  This
 program is free software; you can redistribute it and/or modify it under
 the same terms as Perl itself.
 

@@ -1,5 +1,11 @@
 Revision history for Perl module DateTime::Format::Epoch
 
+0.07  2004-08-27
+    - Added DateTime::Format::Epoch::ActiveDirectory.  Thanks to Andrew
+      Sterling Hanenkamp for the information.
+    - Added modules for day counts: JD, MJD, RJD, TJD, RataDie, Lillian.
+      Thanks again to Andrew Sterling Hanenkamp for the idea.
+
 0.07  2004-07-28
     - Changed ::TAI64, test scripts after a DateTime.pm change
       concerning leap seconds.

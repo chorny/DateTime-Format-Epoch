@@ -1,4 +1,4 @@
-package DateTime::Format::Epoch::Unix;
+package DateTime::Format::Epoch::RJD;
 
 use strict;
 
@@ -11,14 +11,15 @@ use DateTime::Format::Epoch;
 
 @ISA = qw/DateTime::Format::Epoch/;
 
-my $epoch = DateTime->new( year => 1970, month => 1, day => 1 );
+my $epoch = DateTime->new( year => 1858, month => 11, day => 16,
+                           hour => 12 );
 
 sub new {
 	my $class = shift;
 
     return $class->SUPER::new( epoch => $epoch,
-                               unit  => 'seconds',
-                               type  => 'int',
+                               unit  => 1/86400,
+                               type  => 'float',
                                skip_leap_seconds => 1 );
 }
 
@@ -27,25 +28,25 @@ __END__
 
 =head1 NAME
 
-DateTime::Format::Epoch::Unix - Convert DateTimes to/from Unix epoch seconds
+DateTime::Format::Epoch::RJD - Convert DateTimes to/from Reduced Julian Days
 
 =head1 SYNOPSIS
 
-  use DateTime::Format::Epoch::Unix;
+  use DateTime::Format::Epoch::RJD;
 
-  my $formatter = DateTime::Format::Epoch::Unix->new();
+  my $formatter = DateTime::Format::Epoch::RJD->new();
 
-  my $dt2 = $formatter->parse_datetime( 1051488000 );
-   # 2003-04-28T00:00:00
+  my $dt = $formatter->parse_datetime( 53244.5 );
+   # 2004-08-27T00:00:00
 
-  $formatter->format_datetime($dt2);
-   # 1051488000
+  $formatter->format_datetime($dt);
+   # 53244.5
 
 =head1 DESCRIPTION
 
 This module can convert a DateTime object (or any object that can be
-converted to a DateTime object) to the number of seconds since the Unix
-epoch.
+converted to a DateTime object) to the Reduced Julian Day number. See
+L<DateTime::Format::Epoch::JD> for a description.
 
 =head1 METHODS
 
@@ -71,7 +72,7 @@ Eugene van der Pijll <pijll@gmx.net>
 
 =head1 COPYRIGHT
 
-Copyright (c) 2003 Eugene van der Pijll.  All rights reserved.  This
+Copyright (c) 2004 Eugene van der Pijll.  All rights reserved.  This
 program is free software; you can redistribute it and/or modify it under
 the same terms as Perl itself.
 
