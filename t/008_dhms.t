@@ -23,8 +23,8 @@ $dt->set( day => 2, hour => 0 );
 ok(eq_array([$f->format_datetime($dt)], [1,0,0,0]),
   'Epoch + 1 day');
 
-$dt = DateTime->new( year => 1972, month => 1, day => 2 );
-ok(eq_array([$f->format_datetime($dt)], [365*2+1,0,0,1]),
+$dt = DateTime->new( year => 1973, month => 1, day => 2 );
+ok(eq_array([$f->format_datetime($dt)], [365*2+366+1,0,0,2]),
   'Leap second counted');
 
 $dt = DateTime->new( year => 1969, month => 12, day => 22, hour => 22 );

@@ -4,7 +4,7 @@ use strict;
 
 use vars qw($VERSION @ISA);
 
-$VERSION = 0.06;
+$VERSION = 0.07;
 
 use DateTime;
 use DateTime::Format::Epoch;
@@ -14,10 +14,9 @@ use Math::BigInt;
 
 @ISA = qw/DateTime::Format::Epoch/;
 
-# Epoch is 1970-01-01 00:00:00 TAI, is 1969-12-31T23:59:51 or
-# 1969-12-31T23:59:50 (not clear)
+# Epoch is 1970-01-01 00:00:00 TAI, is 1969-12-31T23:59:50 'utc'
 my $epoch = DateTime->new( year => 1969, month => 12, day => 31,
-                           hour => 23, minute => 59, second => 51 );
+                           hour => 23, minute => 59, second => 50 );
 
 my $start = Math::BigInt->new(1) << 62;
 
@@ -115,14 +114,6 @@ byte strings.
 
 =back
 
-=head1 BUGS
-
-Before the introduction of the leap seconds in 1972, the relation
-between TAI and UTC was irregular. In this module, it is assumed that
-the difference TAI-UTC was 9 seconds constantly. Any errors introduced
-by this assumption come from the irregularity of UTC, and are not
-TAI64's fault or mine.
-
 =head1 SUPPORT
 
 Support for this module is provided via the datetime@perl.org email
@@ -134,7 +125,7 @@ Eugene van der Pijll <pijll@gmx.net>
 
 =head1 COPYRIGHT
 
-Copyright (c) 2003 Eugene van der Pijll.  All rights reserved.  This
+Copyright (c) 2003, 2004 Eugene van der Pijll.  All rights reserved.  This
 program is free software; you can redistribute it and/or modify it under
 the same terms as Perl itself.
 

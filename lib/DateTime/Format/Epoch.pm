@@ -4,9 +4,9 @@ use strict;
 
 use vars qw($VERSION);
 
-$VERSION = 0.06;
+$VERSION = 0.07;
 
-use DateTime 0.18;
+use DateTime 0.22;
 use DateTime::LeapSecond;
 
 use Math::BigInt;
@@ -282,9 +282,9 @@ Eugene van der Pijll <pijll@gmx.net>
 
 =head1 COPYRIGHT
 
-Copyright (c) 2003 Eugene van der Pijll.  All rights reserved.  This
-program is free software; you can redistribute it and/or modify it under
-the same terms as Perl itself.
+Copyright (c) 2003, 2004 Eugene van der Pijll.  All rights reserved.
+This program is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself.
 
 =head1 SEE ALSO
 

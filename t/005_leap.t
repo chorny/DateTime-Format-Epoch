@@ -27,7 +27,7 @@ $dt = DateTime->new( year => 2003, month => 4, day => 27,
                      time_zone => 'Europe/Amsterdam' );
 
 is($f_with_leap->format_datetime($dt) - $f_skip_leap->format_datetime($dt),
-    23, '23 leap seconds until 2003');
+    22, '22 leap seconds until 2003');
 
 $dt = DateTime->new( year => 1994, month => 6, day => 30,
                      hour => 23, minute => 59 );

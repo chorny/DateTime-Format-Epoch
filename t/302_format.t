@@ -13,5 +13,5 @@ isa_ok($f, 'DateTime::Format::Epoch::TAI64' );
 my $dt = DateTime->new( year => 1997, month => 10, day => 3,
                         hour => 18, minute => 14, second => 48,
                         time_zone => 'UTC' );
-is($f->format_datetime($dt), "\x40\0\0\0\x34\x35\x36\x37",
+is(unpack("H*", $f->format_datetime($dt)), "4000000034353637",
         '1997-10-3 as string');
