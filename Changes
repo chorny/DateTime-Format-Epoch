@@ -1,5 +1,8 @@
 Revision history for Perl module DateTime::Format::Epoch
 
+0.03  2003-05-06
+    - Removed a bug, which appeared after a DateTime change
+
 0.02  2003-05-05
     - First CPAN release version, with too many changes to mention
 

@@ -40,7 +40,7 @@ is($f_skip_leap->format_datetime($dt2) - $f_skip_leap->format_datetime($dt),
 
 $dt2 = DateTime->new( year => 1994, month => 6, day => 30,
                       hour => 23, minute => 59, second => 60,
-                      time_zone => 'utc' );
+                      time_zone => 'UTC' );
 
 is($f_with_leap->format_datetime($dt2) - $f_with_leap->format_datetime($dt),
     60, 'correct value at leap second');

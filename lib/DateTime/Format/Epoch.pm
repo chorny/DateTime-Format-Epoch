@@ -4,7 +4,7 @@ use strict;
 
 use vars qw($VERSION);
 
-$VERSION = 0.02;
+$VERSION = 0.03;
 
 use DateTime 0.10;
 use DateTime::LeapSecond;
@@ -141,7 +141,7 @@ sub parse_datetime {
     my $dt = $self->{epoch_class}->from_object( object => $temp_dt );
 
     if (!$self->{local_epoch}) {
-        $dt->set_time_zone( 'utc' ) if $dt->can('set_time_zone');
+        $dt->set_time_zone( 'UTC' ) if $dt->can('set_time_zone');
     }
 
     return $dt;
