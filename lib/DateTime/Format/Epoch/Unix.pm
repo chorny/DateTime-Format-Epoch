@@ -4,7 +4,7 @@ use strict;
 
 use vars qw($VERSION @ISA);
 
-$VERSION = 0.08;
+$VERSION = 0.09;
 
 use DateTime;
 use DateTime::Format::Epoch;
@@ -33,13 +33,15 @@ DateTime::Format::Epoch::Unix - Convert DateTimes to/from Unix epoch seconds
 
   use DateTime::Format::Epoch::Unix;
 
-  my $formatter = DateTime::Format::Epoch::Unix->new();
-
-  my $dt2 = $formatter->parse_datetime( 1051488000 );
+  my $dt = DateTime::Format::Epoch::Unix->parse_datetime( 1051488000 );
    # 2003-04-28T00:00:00
 
-  $formatter->format_datetime($dt2);
+  DateTime::Format::Epoch::Unix->format_datetime($dt);
    # 1051488000
+
+  my $formatter = DateTime::Format::Epoch::Unix->new();
+  my $dt2 = $formatter->parse_datetime( 1051488000 );
+  $formatter->format_datetime($dt2);
 
 =head1 DESCRIPTION
 

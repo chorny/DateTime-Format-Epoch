@@ -4,7 +4,7 @@ use strict;
 
 use vars qw($VERSION @ISA);
 
-$VERSION = 0.08;
+$VERSION = 0.09;
 
 use DateTime;
 use DateTime::Format::Epoch;
@@ -33,12 +33,16 @@ DateTime::Format::Epoch::MJD - Convert DateTimes to/from Modified Julian Days
 
   use DateTime::Format::Epoch::MJD;
 
-  my $formatter = DateTime::Format::Epoch::MJD->new();
-
-  my $dt = $formatter->parse_datetime( 53244 );
+  my $dt = DateTime::Format::Epoch::MJD->parse_datetime( 53244 );
    # 2004-08-27T00:00:00
 
-  $formatter->format_datetime($dt);
+  DateTime::Format::Epoch::MJD->format_datetime($dt);
+   # 53244
+
+  my $formatter = DateTime::Format::Epoch::MJD->new();
+  my $dt2 = $formatter->parse_datetime( 53244 );
+   # 2004-08-27T00:00:00
+  $formatter->format_datetime($dt2);
    # 53244
 
 =head1 DESCRIPTION

@@ -4,7 +4,7 @@ use strict;
 
 use vars qw($VERSION @ISA);
 
-$VERSION = 0.08;
+$VERSION = 0.09;
 
 use DateTime;
 use DateTime::Format::Epoch;
@@ -75,9 +75,16 @@ DateTime::Format::Epoch::TAI64 - Convert DateTimes to/from TAI64 values
 
   use DateTime::Format::Epoch::TAI64;
 
+  my $dt = DateTime::Format::Epoch::TAI64
+                ->parse_datetime( '4611686019483526367' );
+   # 2003-06-20T19:49:59
+
+  DateTime::Format::Epoch::TAI64->format_datetime($dt);
+   # 4611686019483526367
+
   my $formatter = DateTime::Format::Epoch::TAI64->new();
 
-  my $dt = $formatter->parse_datetime( '4611686019483526367' );
+  $dt = $formatter->parse_datetime( '4611686019483526367' );
    # 2003-06-20T19:49:59
 
   $formatter->format_datetime($dt);

@@ -4,7 +4,7 @@ use strict;
 
 use vars qw($VERSION @ISA);
 
-$VERSION = 0.08;
+$VERSION = 0.09;
 
 use DateTime;
 use DateTime::Format::Epoch;
@@ -33,13 +33,15 @@ DateTime::Format::Epoch::TJD - Convert DateTimes to/from Truncated Julian Days
 
   use DateTime::Format::Epoch::TJD;
 
-  my $formatter = DateTime::Format::Epoch::TJD->new();
-
-  my $dt = $formatter->parse_datetime( 13244.5 );
+  my $dt = DateTime::Format::Epoch::TJD->parse_datetime( 13244.5 );
    # 2004-08-27T00:00:00
 
-  $formatter->format_datetime($dt);
+  DateTime::Format::Epoch::TJD->format_datetime($dt);
    # 13244.5
+
+  my $formatter = DateTime::Format::Epoch::TJD->new();
+  my $dt2 = $formatter->parse_datetime( 13244.5 );
+  $formatter->format_datetime($dt2);
 
 =head1 DESCRIPTION
 

@@ -4,7 +4,7 @@ use strict;
 
 use vars qw($VERSION);
 
-$VERSION = 0.0801;
+$VERSION = 0.09;
 
 use DateTime 0.22;
 use DateTime::LeapSecond;
@@ -74,6 +74,10 @@ sub new {
 sub format_datetime {
     my ($self, $dt) = @_;
 
+    unless (ref $self) {
+        $self = $self->new;
+    }
+
     $dt = $dt->clone->set_time_zone('floating')
         if  $self->{local_epoch} &&
             $self->{epoch}->can('time_zone') &&
@@ -126,6 +130,10 @@ sub format_datetime {
 sub parse_datetime {
     my ($self, $str) = @_;
 
+    unless (ref $self) {
+        $self = $self->new;
+    }
+
     if ($self->{dhms}) {
         my (undef, $d, $h, $m, $s) = @_;
         $str = (($d * 24 + $h) * 60 + $m) + $s;
@@ -161,6 +169,9 @@ sub parse_datetime {
             $rd_days++;
         }
     }
+
+    $rd_days = $rd_days->numify if UNIVERSAL::isa($rd_days, 'Math::BigInt');
+    $rd_secs = $rd_secs->numify if UNIVERSAL::isa($rd_secs, 'Math::BigInt');
 
     my $temp_dt = bless { rd_days => $rd_days, rd_secs => $rd_secs},
                         'DateTime::Format::Epoch::_DateTime';

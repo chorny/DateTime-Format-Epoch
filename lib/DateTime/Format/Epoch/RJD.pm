@@ -4,7 +4,7 @@ use strict;
 
 use vars qw($VERSION @ISA);
 
-$VERSION = 0.08;
+$VERSION = 0.09;
 
 use DateTime;
 use DateTime::Format::Epoch;
@@ -34,12 +34,17 @@ DateTime::Format::Epoch::RJD - Convert DateTimes to/from Reduced Julian Days
 
   use DateTime::Format::Epoch::RJD;
 
+  my $dt = DateTime::Format::Epoch::RJD->parse_datetime( 53244.5 );
+   # 2004-08-27T00:00:00
+  DateTime::Format::Epoch::RJD->format_datetime($dt);
+   # 53244.5
+
   my $formatter = DateTime::Format::Epoch::RJD->new();
 
-  my $dt = $formatter->parse_datetime( 53244.5 );
+  my $dt2 = $formatter->parse_datetime( 53244.5 );
    # 2004-08-27T00:00:00
 
-  $formatter->format_datetime($dt);
+  $formatter->format_datetime($dt2);
    # 53244.5
 
 =head1 DESCRIPTION

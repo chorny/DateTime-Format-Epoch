@@ -4,7 +4,7 @@ use strict;
 
 use vars qw($VERSION @ISA);
 
-$VERSION = 0.08;
+$VERSION = 0.09;
 
 use DateTime;
 use DateTime::Format::Epoch;
@@ -33,12 +33,14 @@ DateTime::Format::Epoch::RataDie - Convert DateTimes to/from Rata Die
 
   use DateTime::Format::Epoch::RataDie;
 
-  my $formatter = DateTime::Format::Epoch::RataDie->new();
+  my $dt = DateTime::Format::Epoch::RataDie->parse_datetime( $count );
 
-  my $dt = $formatter->parse_datetime( $count );
-
-  $formatter->format_datetime($dt);
+  DateTime::Format::Epoch::RataDie->format_datetime($dt);
    # $count
+
+  my $formatter = DateTime::Format::Epoch::RataDie->new();
+  my $dt2 = $formatter->parse_datetime( $count );
+  $formatter->format_datetime($dt2);
 
 =head1 DESCRIPTION
 

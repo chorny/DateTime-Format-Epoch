@@ -1,7 +1,7 @@
 use strict;
 BEGIN { $^W = 1 }
 
-use Test::More tests => 6;
+use Test::More tests => 12;
 
 use DateTime;
 use DateTime::Format::Epoch::JD;
@@ -23,6 +23,8 @@ my %dates = (
 
 while (my ($timescale, $value) = each %dates) {
     #no strict 'refs';
+    is( ("DateTime::Format::Epoch::$timescale")->format_datetime($dt),
+        $value, $timescale );
     is( ("DateTime::Format::Epoch::$timescale")->new->format_datetime($dt),
         $value, $timescale );
 }

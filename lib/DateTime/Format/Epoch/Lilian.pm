@@ -4,7 +4,7 @@ use strict;
 
 use vars qw($VERSION @ISA);
 
-$VERSION = 0.08;
+$VERSION = 0.09;
 
 use DateTime;
 use DateTime::Format::Epoch;
@@ -33,12 +33,16 @@ DateTime::Format::Epoch::Lilian - Convert DateTimes to/from Lilian Days
 
   use DateTime::Format::Epoch::Lilian;
 
-  my $formatter = DateTime::Format::Epoch::Lilian->new();
-
-  my $dt = $formatter->parse_datetime( 53244.5 );
+  my $dt = DateTime::Format::Epoch::Lilian->parse_datetime( 53244.5 );
    # 2004-08-27T00:00:00
 
-  $formatter->format_datetime($dt);
+  DateTime::Format::Epoch::Lilian->format_datetime($dt);
+   # 53244.5
+
+  my $formatter = DateTime::Format::Epoch::Lilian->new();
+  my $dt2 = $formatter->parse_datetime( 53244.5 );
+   # 2004-08-27T00:00:00
+  $formatter->format_datetime($dt2);
    # 53244.5
 
 =head1 DESCRIPTION

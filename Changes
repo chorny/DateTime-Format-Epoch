@@ -1,5 +1,10 @@
 Revision history for Perl module DateTime::Format::Epoch
 
+0.09  2004-10-18
+    - Worked around Math::BigInt bug on Solaris (hopefully)
+    - For the predefined epoch modules, format_datetime() and
+      parse_datetime() can now be called as class methods.
+
 0.0801  2004-08-31
     - Documentation change only
 

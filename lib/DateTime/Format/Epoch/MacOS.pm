@@ -4,7 +4,7 @@ use strict;
 
 use vars qw($VERSION @ISA);
 
-$VERSION = 0.08;
+$VERSION = 0.09;
 
 use DateTime;
 use DateTime::Format::Epoch;
@@ -34,6 +34,10 @@ DateTime::Format::Epoch::MacOS - Convert DateTimes to/from Mac OS epoch seconds
 =head1 SYNOPSIS
 
   use DateTime::Format::Epoch::MacOS;
+
+  my $dt = DateTime::Format::Epoch::MacOS->parse_datetime( 1051488000 );
+  DateTime::Format::Epoch::MacOS->format_datetime($dt);
+   # 1051488000
 
   my $formatter = DateTime::Format::Epoch::MacOS->new();
 
