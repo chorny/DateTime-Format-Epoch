@@ -1,5 +1,11 @@
 Revision history for Perl module DateTime::Format::Epoch
 
+0.05  2003-07-18
+    - Changed API of DT::F::E::TAI64 (the format_datetime_as_string()
+      method is replaced by a parameter to the constructor)
+    - Added dhms parameter to new(), to return '2d, 4h, 15m, 45s'
+      values
+
 0.04  2003-06-19
     - Added start_at parameter to new()
     - Added DateTime::Format::Epoch::TAI64

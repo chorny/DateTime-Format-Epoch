@@ -4,14 +4,17 @@ use strict;
 
 use vars qw($VERSION @ISA);
 
-$VERSION = 0.04;
+$VERSION = 0.05;
 
 use DateTime;
 use DateTime::Format::Epoch;
 
+use Params::Validate qw/validate/;
+use Math::BigInt;
+
 @ISA = qw/DateTime::Format::Epoch/;
 
-# Epoch is 1970-01-01 00:00:00 TAI, is 1969-12-31T23:59:49 or
+# Epoch is 1970-01-01 00:00:00 TAI, is 1969-12-31T23:59:51 or
 # 1969-12-31T23:59:50 (not clear)
 my $epoch = DateTime->new( year => 1969, month => 12, day => 31,
                            hour => 23, minute => 59, second => 51 );
@@ -20,22 +23,46 @@ my $start = Math::BigInt->new(1) << 62;
 
 sub new {
 	my $class = shift;
+    my %p = validate( @_,
+                      { format => { regex => qr/^string|number$/,
+                                    default => 'number' },
+                      });
 
-    return $class->SUPER::new( epoch => $epoch,
-                               unit  => 'seconds',
-                               type  => 'bigint',
-                               skip_leap_seconds => 0,
-                               start_at => $start );
+    my $self = $class->SUPER::new( epoch => $epoch,
+                                   unit  => 'seconds',
+                                   type  => 'bigint',
+                                   skip_leap_seconds => 0,
+                                   start_at => $start );
+    $self->{is_string} = ($p{format} eq 'string');
+
+    return $self;
 }
 
-sub format_datetime_as_string {
+sub format_datetime {
     my ($self, $dt) = @_;
 
-    my $str = $self->format_datetime($dt)->as_hex;
-    my ($n) = $str =~ /^0x(\w+)$/ or die "Internal error";
+    my $n = $self->SUPER::format_datetime($dt);
 
-    my $retval = pack "H*", $n;
-    return "0" x (8 - length$retval) . $retval;
+    if ($self->{is_string}) {
+        my $str = $n->as_hex;
+        my ($hex) = $str =~ /^0x(\w+)$/
+                        or die "Unknown BigInt format '$str'\n";
+        my $retval = pack "H*", $hex;
+        $n = "0" x (8 - length$retval) . $retval;
+    }
+
+    return $n;
+}
+
+sub parse_datetime {
+    my ($self, $n) = @_;
+
+    if ($self->{is_string}) {
+        my $hexstr = '0x' . unpack 'H*', $n;
+        $n = Math::BigInt->new($hexstr);
+    }
+
+    return $self->SUPER::parse_datetime($n);
 }
 
 1;
@@ -51,11 +78,20 @@ DateTime::Format::Epoch::TAI64 - Convert DateTimes to/from TAI64 values
 
   my $formatter = DateTime::Format::Epoch::TAI64->new();
 
-  my $dt2 = $formatter->parse_datetime( ???? );
-   # 2003-04-28T00:00:00
+  my $dt = $formatter->parse_datetime( '4611686019483526367' );
+   # 2003-06-20T19:49:59
 
-  $formatter->format_datetime_as_string($dt2);
-   # ????
+  $formatter->format_datetime($dt);
+   # 4611686019483526367
+
+  my $str_frmt = DateTime::Format::Epoch::TAI64->new(
+                                                format => 'string' );
+
+  $dt = $str_frmt->parse_datetime( "\x40\0\0\0\x3e\xf3\x69\x6a" );
+   # 2003-06-20T19:49:59
+
+  $str_frmt->format_datetime($dt);
+   # "\x40\0\0\0\x3e\xf3\x69\x6a"
 
 =head1 DESCRIPTION
 
@@ -67,17 +103,15 @@ expect the universe to be closed).
 =head1 METHODS
 
 Most of the methods are the same as those in L<DateTime::Format::Epoch>.
-Apart from one new method, the only difference is the constructor.
+The only difference is the constructor.
 
 =over 4
 
-=item * new()
+=item * new( [format => 'string'] )
 
-Constructor of the formatter/parser object. It has no parameters.
-
-=item * format_datetime_as_string( $dt )
-
-Returns the TAI64 value as an 8 byte string.
+Constructor of the formatter/parser object. If the optional format
+parameter is set to 'string', TAI64 values will be expected to be 8
+byte strings.
 
 =back
 
@@ -85,7 +119,7 @@ Returns the TAI64 value as an 8 byte string.
 
 Before the introduction of the leap seconds in 1972, the relation
 between TAI and UTC was irregular. In this module, it is assumed that
-the difference TAI-UTC was 10 seconds constantly. Any errors introduced
+the difference TAI-UTC was 9 seconds constantly. Any errors introduced
 by this assumption come from the irregularity of UTC, and are not
 TAI64's fault or mine.
 

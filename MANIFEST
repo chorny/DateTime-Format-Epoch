@@ -14,10 +14,12 @@ t/004_nano.t
 t/005_leap.t
 t/006_local.t
 t/007_parse.t
+t/008_dhms.t
 t/101_load.t
 t/102_format.t
 t/201_load.t
 t/202_format.t
 t/301_load.t
 t/302_format.t
+t/303_parse.t
 Makefile.PL

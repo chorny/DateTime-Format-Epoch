@@ -4,7 +4,7 @@ use strict;
 
 use vars qw($VERSION);
 
-$VERSION = 0.04;
+$VERSION = 0.05;
 
 use DateTime 0.12;
 use DateTime::LeapSecond;
@@ -40,6 +40,8 @@ sub new {
                                   default => 0},
                         local_epoch => {type => BOOLEAN,
                                         default => 0},
+                        dhms  => {type => BOOLEAN,
+                                  default => 0},
                         skip_leap_seconds => {type => BOOLEAN,
                                               default => 1},
                         start_at => {default => 0},
@@ -52,6 +54,7 @@ sub new {
     }
 
     $p{unit} = $units_per_second{$p{unit}};
+    $p{unit} = 1 if $p{dhms};
 
     ($p{epoch_rd_days}, $p{epoch_rd_secs}) = $p{epoch}->utc_rd_values;
     $p{epoch_class} = ref $p{epoch};
@@ -103,11 +106,27 @@ sub format_datetime {
 
     $secs += $self->{start_at};
 
+    if ($self->{dhms}) {
+        my $mins = int($secs / 60);
+        $secs -= $mins * 60;
+        my $hours = int($mins / 60);
+        $mins -= $hours * 60;
+        my $days = int($hours / 24);
+        $hours -= $days * 24;
+
+        return $days, $hours, $mins, $secs;
+    }
+
     return $secs;
 }
 
 sub parse_datetime {
     my ($self, $str) = @_;
+
+    if ($self->{dhms}) {
+        my (undef, $d, $h, $m, $s) = @_;
+        $str = (($d * 24 + $h) * 60 + $m) + $s;
+    }
 
     $str -= $self->{start_at};
 
@@ -199,7 +218,7 @@ epoch.  It can also do the reverse.
 
 Constructor of the formatter/parser object. It can take the following
 parameters: "epoch", "unit", "type", "skip_leap_seconds", "start_at",
-and "local_epoch".
+"local_epoch" and "dhms".
 
 The epoch parameter is the only required parameter. It should be a
 DateTime object (or at least, it has to be convertible to a DateTime
@@ -227,10 +246,24 @@ true value. In this case, you should submit an epoch with a floating
 timezone. The exact epoch used in C<format_datetime> will then depend on
 the timezone of the object you pass to C<format_datetime>.
 
+Most often, the time since an epoch is given in seconds. In some
+circumstances however it is expressed as a number of days, hours, minutes
+and seconds. This is done by NASA, for the so called Mission Elapsed
+Time. For example, 2/03:45:18 MET means it has been 2 days, 3 hours, 45
+minutes, and 18 seconds since liftoff. If you set the dhms parameter to
+true, format_datetime returns a four element list, containing the number
+of days, hours, minutes and seconds, and parse_datetime accepts the same
+four element list.
+
 =item * format_datetime($datetime)
 
 Given a DateTime object, this method returns the number of seconds since
 the epoch.
+
+=item * parse_datetime($secs)
+
+Given a number of seconds, this method returns the corresponding
+DateTime object.
 
 =back
 
