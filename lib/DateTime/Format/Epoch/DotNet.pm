@@ -1,4 +1,4 @@
-package DateTime::Format::Epoch::MacOS;
+package DateTime::Format::Epoch::DotNet;
 
 use strict;
 
@@ -11,15 +11,15 @@ use DateTime::Format::Epoch;
 
 @ISA = qw/DateTime::Format::Epoch/;
 
-my $epoch = DateTime->new( year => 1904, month => 1, day => 1,
+my $epoch = DateTime->new( year => 1, month => 1, day => 1,
                            time_zone => 'floating' );
 
 sub new {
 	my $class = shift;
 
     return $class->SUPER::new( epoch => $epoch,
-                               unit  => 'seconds',
-                               type  => 'int',
+                               unit  => 1e7,
+                               type  => 'bigint',
                                local_epoch => 1,
                                skip_leap_seconds => 1 );
 }
@@ -29,13 +29,13 @@ __END__
 
 =head1 NAME
 
-DateTime::Format::Epoch::MacOS - Convert DateTimes to/from Mac OS epoch seconds
+DateTime::Format::Epoch::DotNet - Convert DateTimes to/from .NET epoch seconds
 
 =head1 SYNOPSIS
 
-  use DateTime::Format::Epoch::MacOS;
+  use DateTime::Format::Epoch::DotNet;
 
-  my $formatter = DateTime::Format::Epoch::MacOS->new();
+  my $formatter = DateTime::Format::Epoch::DotNet->new();
 
   my $dt2 = $formatter->parse_datetime( 1051488000 );
 
@@ -45,12 +45,12 @@ DateTime::Format::Epoch::MacOS - Convert DateTimes to/from Mac OS epoch seconds
 =head1 DESCRIPTION
 
 This module can convert a DateTime object (or any object that can be
-converted to a DateTime object) to the number of seconds since the Mac OS
-epoch.
+converted to a DateTime object) to the number of seconds since the
+epoch defined in the .NET Framework SDK.
 
-Note that the Mac OS epoch is defined in the I<local> time zone. This
-means that these two pieces of code will print the same number of
-seconds, even though they represent two datetimes 6 hours apart:
+Note that this epoch is defined in the I<local> time zone. This means
+that these two pieces of code will print the same number of seconds,
+even though they represent two datetimes 6 hours apart:
 
     $dt = DateTime->new( year => 2003, month => 5, day => 2,
                          time_zone => 'Europe/Amsterdam' );
@@ -59,9 +59,6 @@ seconds, even though they represent two datetimes 6 hours apart:
     $dt = DateTime->new( year => 2003, month => 5, day => 2,
                          time_zone => 'America/Chicago' );
     print $formatter->format_datetime($dt);
-
-Mac OS X is a Unix system, and uses the Unix epoch
-(1970-01-01T00:00:00). Use DateTime::Format::Epoch::Unix instead.
 
 =head1 METHODS
 

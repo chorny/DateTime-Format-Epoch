@@ -1,5 +1,9 @@
 Revision history for Perl module DateTime::Format::Epoch
 
+0.06  2003-11-25
+    - Added support for other time units
+    - Added DateTime::Format::Epoch::DotNet
+
 0.05  2003-07-18
     - Changed API of DT::F::E::TAI64 (the format_datetime_as_string()
       method is replaced by a parameter to the constructor)

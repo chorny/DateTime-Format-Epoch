@@ -4,9 +4,9 @@ use strict;
 
 use vars qw($VERSION);
 
-$VERSION = 0.05;
+$VERSION = 0.06;
 
-use DateTime 0.12;
+use DateTime 0.18;
 use DateTime::LeapSecond;
 
 use Math::BigInt;
@@ -34,7 +34,10 @@ sub new {
     my %p = validate( @_,
                       { epoch => {type  => OBJECT, 
                                   can   => 'utc_rd_values'},
-                        unit  => {regex => qr/^(?:milli|micro|nano)?seconds$/,
+                        unit  => {callbacks =>
+                                     {'valid unit' =>
+                                      sub { exists $units_per_second{$_[0]}
+                                            or $_[0] > 0 }},
                                   default => 'seconds'},
                         type  => {regex => qr/^(?:int|float|bigint)$/,
                                   default => 0},
@@ -49,12 +52,12 @@ sub new {
 
     $p{epoch} = $p{epoch}->clone if $p{epoch}->can('clone');
 
-    if (!$p{type}) {
-        $p{type} = ($p{unit} eq 'nanoseconds' ? 'bigint' : 'int');
-    }
-
-    $p{unit} = $units_per_second{$p{unit}};
+    $p{unit} = $units_per_second{$p{unit}} || $p{unit};
     $p{unit} = 1 if $p{dhms};
+
+    if (!$p{type}) {
+        $p{type} = ($p{unit} > 1e6 ? 'bigint' : 'int');
+    }
 
     ($p{epoch_rd_days}, $p{epoch_rd_secs}) = $p{epoch}->utc_rd_values;
     $p{epoch_class} = ref $p{epoch};
@@ -227,7 +230,8 @@ usually numbered 0. If you want to start at a different value, you can
 use the start_at parameter.
 
 The unit parameter can be "seconds", "milliseconds, "microseconds" or
-"nanoseconds". The default is "seconds".
+"nanoseconds". The default is "seconds". If you need any other unit,
+you must specify the number of units per second.
 
 The type parameter specifies the type of the return value. It can be
 "int" (returns integer value), "float" (returns floating point value),

@@ -1,0 +1,12 @@
+# http://module-build.sourceforge.net/META-spec.html
+#XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
+name:         DateTime-Format-Epoch
+version:      0.06
+version_from: lib/DateTime/Format/Epoch.pm
+installdirs:  site
+requires:
+    DateTime:                      0.18
+    Math::BigInt:                  1.66
+
+distribution_type: module
+generated_by: ExtUtils::MakeMaker version 6.16

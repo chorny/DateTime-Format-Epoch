@@ -4,7 +4,7 @@ use strict;
 
 use vars qw($VERSION @ISA);
 
-$VERSION = 0.05;
+$VERSION = 0.06;
 
 use DateTime;
 use DateTime::Format::Epoch;
