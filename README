@@ -3,7 +3,7 @@ DateTime-Format-Epoch
 
 This module implements a conversion from DateTime objects to epoch
 seconds and back. The epoch can be an arbritrary date, or one of the
-predefined epochs (UNIX, DOS, etc.).
+predefined epochs (UNIX, MacOS, TAI64, etc.).
 
 INSTALLATION
 

@@ -4,9 +4,9 @@ use strict;
 
 use vars qw($VERSION);
 
-$VERSION = 0.03;
+$VERSION = 0.04;
 
-use DateTime 0.10;
+use DateTime 0.12;
 use DateTime::LeapSecond;
 
 use Math::BigInt;
@@ -42,6 +42,7 @@ sub new {
                                         default => 0},
                         skip_leap_seconds => {type => BOOLEAN,
                                               default => 1},
+                        start_at => {default => 0},
                       } );
 
     $p{epoch} = $p{epoch}->clone if $p{epoch}->can('clone');
@@ -100,11 +101,15 @@ sub format_datetime {
         }
     }
 
+    $secs += $self->{start_at};
+
     return $secs;
 }
 
 sub parse_datetime {
     my ($self, $str) = @_;
+
+    $str -= $self->{start_at};
 
     my $delta_days = _floor( $str / (86_400 * $self->{unit}) );
     $str -= $delta_days * 86_400 * $self->{unit};
@@ -166,11 +171,12 @@ DateTime::Format::Epoch - Convert DateTimes to/from epoch seconds
 
   my $dt = DateTime->new( year => 1970, month => 1, day => 1 );
   my $formatter = DateTime::Format::Epoch->new(
-                      epoch          => $dt,            # UNIX epoch
+                      epoch          => $dt,
                       unit           => 'seconds',
-                      type           => 'int',      # or 'float', 'bigint'
-                      skip_leap_secs => 1,
-                      local_epoch    => 0,
+                      type           => 'int',    # or 'float', 'bigint'
+                      skip_leap_secondss => 1,
+                      start_at       => 0,
+                      local_epoch    => undef,
                   );
 
   my $dt2 = $formatter->parse_datetime( 1051488000 );
@@ -192,12 +198,14 @@ epoch.  It can also do the reverse.
 =item * new( ... )
 
 Constructor of the formatter/parser object. It can take the following
-parameters: "epoch", "unit", "type", "skip_leap_seconds", and
-"local_epoch".
+parameters: "epoch", "unit", "type", "skip_leap_seconds", "start_at",
+and "local_epoch".
 
 The epoch parameter is the only required parameter. It should be a
 DateTime object (or at least, it has to be convertible to a DateTime
-object).
+object). This datetime is the starting point of the day count, and is
+usually numbered 0. If you want to start at a different value, you can
+use the start_at parameter.
 
 The unit parameter can be "seconds", "milliseconds, "microseconds" or
 "nanoseconds". The default is "seconds".
@@ -223,6 +231,8 @@ the timezone of the object you pass to C<format_datetime>.
 
 Given a DateTime object, this method returns the number of seconds since
 the epoch.
+
+=back
 
 =head1 SUPPORT
 

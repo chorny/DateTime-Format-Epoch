@@ -6,6 +6,7 @@ Changes
 lib/DateTime/Format/Epoch.pm
 lib/DateTime/Format/Epoch/Unix.pm
 lib/DateTime/Format/Epoch/MacOS.pm
+lib/DateTime/Format/Epoch/TAI64.pm
 t/001_load.t
 t/002_format.t
 t/003_bigint.t
@@ -17,4 +18,6 @@ t/101_load.t
 t/102_format.t
 t/201_load.t
 t/202_format.t
+t/301_load.t
+t/302_format.t
 Makefile.PL
