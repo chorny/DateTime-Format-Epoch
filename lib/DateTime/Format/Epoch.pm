@@ -4,7 +4,7 @@ use strict;
 
 use vars qw($VERSION);
 
-$VERSION = 0.09;
+$VERSION = '0.10';
 
 use DateTime 0.22;
 use DateTime::LeapSecond;
@@ -156,7 +156,7 @@ sub parse_datetime {
     if (!$self->{skip_leap_seconds}) {
         $rd_secs -= DateTime::LeapSecond::leap_seconds( $rd_days )
                  - $self->{leap_secs};
-        if ($rd_secs > DateTime::LeapSecond::day_length( $rd_days )) {
+        if ($rd_secs >= DateTime::LeapSecond::day_length( $rd_days )) {
             $rd_secs -= DateTime::LeapSecond::day_length( $rd_days );
             $rd_days++;
         } elsif ($rd_secs < 0) {
@@ -164,7 +164,7 @@ sub parse_datetime {
             $rd_secs += DateTime::LeapSecond::day_length( $rd_days );
         }
     } else {
-        if ($rd_secs > 86400) {
+        if ($rd_secs >= 86400) {
             $rd_secs -= 86400;
             $rd_days++;
         }
@@ -300,7 +300,7 @@ Eugene van der Pijll <pijll@gmx.net>
 
 =head1 COPYRIGHT
 
-Copyright (c) 2003, 2004 Eugene van der Pijll.  All rights reserved.
+Copyright (c) 2003-2006 Eugene van der Pijll.  All rights reserved.
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
 
