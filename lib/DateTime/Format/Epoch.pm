@@ -4,12 +4,12 @@ use strict;
 
 use vars qw($VERSION);
 
-$VERSION = '0.10';
+$VERSION = '0.11';
 
 use DateTime 0.22;
 use DateTime::LeapSecond;
 
-use Math::BigInt;
+use Math::BigInt ('lib' => 'GMP,Pari,FastCalc');
 use Params::Validate qw/validate BOOLEAN OBJECT/;
 
 sub _floor {

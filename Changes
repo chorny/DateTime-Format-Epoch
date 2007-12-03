@@ -1,5 +1,9 @@
 Revision history for Perl module DateTime::Format::Epoch
 
+0.11  2007-12-04
+    - Tried to make code work with Math::BigInt::* packages (tries to
+      solve bug reported by Philip (Flip) Kromer)
+
 0.10  2006-05-23
     - Removed midnight bug, reported by Jason Thaxter.
 
