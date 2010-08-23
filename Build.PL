@@ -18,7 +18,8 @@ my $build = Module::Build->new(
       'repository' => 'http://github.com/chorny/DateTime-Format-Epoch'
     }
   },
-  'dist_version_from' => 'lib/DateTime/Format/Epoch.pm'
+  'dist_version_from' => 'lib/DateTime/Format/Epoch.pm',
+  create_makefile_pl => 'traditional',
 );
 
 $build->create_build_script();
