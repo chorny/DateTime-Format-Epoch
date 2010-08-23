@@ -6,3 +6,4 @@ BEGIN { use_ok( 'DateTime::Format::Epoch' ); }
 
 diag("==> DateTime version = $DateTime::VERSION");
 diag("==> Math::BigInt version = $Math::BigInt::VERSION");
+diag("==> Math::BigInt lib = ".Math::BigInt->config()->{lib});
