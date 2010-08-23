@@ -1,6 +1,8 @@
 Revision history for Perl module DateTime::Format::Epoch
 
     - Move to Module::Build
+    - Do not use GMP on Windows
+    - Report bigint library used in tests
 
 0.11  2007-12-04
     - Tried to make code work with Math::BigInt::* packages (tries to

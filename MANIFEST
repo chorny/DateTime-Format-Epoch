@@ -35,6 +35,6 @@ t/402_format.t
 t/502_format.t
 t/601_load.t
 t/pod.t
-Makefile.PL
 META.yml                                Module meta-data (added by MakeMaker)
 Build.PL
+Makefile.PL

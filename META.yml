@@ -1,12 +1,56 @@
-# http://module-build.sourceforge.net/META-spec.html
-#XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
-name:         DateTime-Format-Epoch
-version:      0.11
-version_from: lib/DateTime/Format/Epoch.pm
-installdirs:  site
+---
+abstract: 'Convert dates to seconds since epoch, for arbritrary epochs'
+author:
+  - 'Eugene van der Pijll (pijll@gmx.net)'
+generated_by: 'Module::Build version 0.3603'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: DateTime-Format-Epoch
+provides:
+  DateTime::Format::Epoch:
+    file: lib/DateTime/Format/Epoch.pm
+    version: 0.12
+  DateTime::Format::Epoch::ActiveDirectory:
+    file: lib/DateTime/Format/Epoch/ActiveDirectory.pm
+    version: 0.12
+  DateTime::Format::Epoch::DotNet:
+    file: lib/DateTime/Format/Epoch/DotNet.pm
+    version: 0.12
+  DateTime::Format::Epoch::JD:
+    file: lib/DateTime/Format/Epoch/JD.pm
+    version: 0.12
+  DateTime::Format::Epoch::Lilian:
+    file: lib/DateTime/Format/Epoch/Lilian.pm
+    version: 0.12
+  DateTime::Format::Epoch::MJD:
+    file: lib/DateTime/Format/Epoch/MJD.pm
+    version: 0.12
+  DateTime::Format::Epoch::MacOS:
+    file: lib/DateTime/Format/Epoch/MacOS.pm
+    version: 0.12
+  DateTime::Format::Epoch::RJD:
+    file: lib/DateTime/Format/Epoch/RJD.pm
+    version: 0.12
+  DateTime::Format::Epoch::RataDie:
+    file: lib/DateTime/Format/Epoch/RataDie.pm
+    version: 0.12
+  DateTime::Format::Epoch::TAI64:
+    file: lib/DateTime/Format/Epoch/TAI64.pm
+    version: 0.12
+  DateTime::Format::Epoch::TJD:
+    file: lib/DateTime/Format/Epoch/TJD.pm
+    version: 0.12
+  DateTime::Format::Epoch::Unix:
+    file: lib/DateTime/Format/Epoch/Unix.pm
+    version: 0.12
 requires:
-    DateTime:                      0.31
-    Math::BigInt:                  1.66
-
-distribution_type: module
-generated_by: ExtUtils::MakeMaker version 6.30
+  DateTime: 0.31
+  Math::BigInt: 1.66
+  Params::Validate: 0
+  perl: 5.00503
+resources:
+  license: http://dev.perl.org/licenses/
+  repository: http://github.com/chorny/DateTime-Format-Epoch
+version: 0.12
