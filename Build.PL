@@ -12,6 +12,7 @@ my $build = Module::Build->new(
     'DateTime' => '0.31',
     'Math::BigInt' => '1.66',
     'Params::Validate' => 0,
+    'perl' => 5.00503,
   },
   'meta_merge' => {
     'resources' => {

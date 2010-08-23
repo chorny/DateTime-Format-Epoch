@@ -1,5 +1,6 @@
 package DateTime::Format::Epoch;
 
+use 5.00503; #qr
 use strict;
 
 use vars qw($VERSION);
