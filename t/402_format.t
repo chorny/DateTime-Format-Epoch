@@ -23,5 +23,5 @@ is(DateTime::Format::Epoch::DotNet->format_datetime($dt), 24*3600*1e7, 'Epoch + 
 
 $dt = DateTime->new( year => 100, month => 1, day => 1 );
 
-is($f->format_datetime($dt) - 31241376000000000, 0, '100 AD');
-is(DateTime::Format::Epoch::DotNet->format_datetime($dt) - 31241376000000000, 0, '100 AD');
+is($f->format_datetime($dt) - 31241376000000000, 0, '100 AD (object)');
+is(DateTime::Format::Epoch::DotNet->format_datetime($dt) - 31241376000000000, 0, '100 AD (class)');
