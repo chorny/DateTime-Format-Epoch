@@ -37,3 +37,4 @@ t/601_load.t
 t/pod.t
 Makefile.PL
 META.yml                                Module meta-data (added by MakeMaker)
+Build.PL

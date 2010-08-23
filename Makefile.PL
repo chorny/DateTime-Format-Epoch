@@ -6,4 +6,5 @@ WriteMakefile(
                          Math::BigInt => 1.66 },
     AUTHOR       => 'Eugene van der Pijll (pijll@gmx.net)',
     ABSTRACT     => 'Convert dates to seconds since epoch, for arbritrary epochs',
+    PL_FILES=> {},
 );
