@@ -10,7 +10,8 @@ my $build = Module::Build->new(
   'module_name' => 'DateTime::Format::Epoch',
   'requires' => {
     'DateTime' => '0.31',
-    'Math::BigInt' => '1.66'
+    'Math::BigInt' => '1.66',
+    'Params::Validate' => 0,
   },
   'meta_merge' => {
     'resources' => {
