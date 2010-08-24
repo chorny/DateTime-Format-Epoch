@@ -16,7 +16,7 @@ my $build = Module::Build->new(
   },
   'build_requires' => {
     'Test::More' => 0,
-  }
+  },
   'meta_merge' => {
     'resources' => {
       'repository' => 'http://github.com/chorny/DateTime-Format-Epoch'
