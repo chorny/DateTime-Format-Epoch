@@ -14,6 +14,9 @@ my $build = Module::Build->new(
     'Params::Validate' => 0,
     'perl' => 5.00503,
   },
+  'build_requires' => {
+    'Test::More' => 0,
+  }
   'meta_merge' => {
     'resources' => {
       'repository' => 'http://github.com/chorny/DateTime-Format-Epoch'
