@@ -10,7 +10,7 @@ use DateTime;
 use DateTime::Format::Epoch;
 
 use Params::Validate qw/validate/;
-use Math::BigInt ('lib' => 'GMP,Pari,FastCalc');
+use Math::BigInt ('lib' => $^O eq 'MSWin32' ? 'Pari,FastCalc' : 'GMP,Pari,FastCalc');
 
 @ISA = qw/DateTime::Format::Epoch/;
 

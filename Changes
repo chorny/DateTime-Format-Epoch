@@ -1,5 +1,9 @@
 Revision history for Perl module DateTime::Format::Epoch
 
+0.13
+    - GMP is used in two places, so fix second
+
+0.12  2010-08-23
     - Move to Module::Build
     - Do not use GMP on Windows
     - Report bigint library used in tests
