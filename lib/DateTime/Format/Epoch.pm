@@ -208,7 +208,7 @@ DateTime::Format::Epoch - Convert DateTimes to/from epoch seconds
                       epoch          => $dt,
                       unit           => 'seconds',
                       type           => 'int',    # or 'float', 'bigint'
-                      skip_leap_secondss => 1,
+                      skip_leap_seconds => 1,
                       start_at       => 0,
                       local_epoch    => undef,
                   );
