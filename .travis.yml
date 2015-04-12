@@ -1,1 +1,4 @@
 language: perl
+before_script:
+  - "sudo apt-get install libgmp-dev"
+  - cpanm --verbose --no-interactive Math::BigInt::GMP
