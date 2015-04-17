@@ -15,6 +15,7 @@ lib/DateTime/Format/Epoch/TJD.pm
 lib/DateTime/Format/Epoch/RJD.pm
 lib/DateTime/Format/Epoch/RataDie.pm
 lib/DateTime/Format/Epoch/Lilian.pm
+lib/DateTime/Format/Epoch/NTP.pm
 t/001_load.t
 t/002_format.t
 t/003_bigint.t
@@ -38,3 +39,4 @@ t/pod.t
 META.yml                                Module meta-data (added by MakeMaker)
 Build.PL
 Makefile.PL
+META.json

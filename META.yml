@@ -1,10 +1,11 @@
 ---
 abstract: 'Convert dates to seconds since epoch, for arbritrary epochs'
 author:
-  - 'Eugene van der Pijll (pijll@gmx.net)'
+  - Eugene van der Pijll (pijll@gmx.net)
 build_requires:
   Test::More: 0
-generated_by: 'Module::Build version 0.3603'
+dynamic_config: 1
+generated_by: 'Module::Build version 0.4211, CPAN::Meta::Converter version 2.143240'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -13,7 +14,7 @@ name: DateTime-Format-Epoch
 provides:
   DateTime::Format::Epoch:
     file: lib/DateTime/Format/Epoch.pm
-    version: 0.13
+    version: 0.15
   DateTime::Format::Epoch::ActiveDirectory:
     file: lib/DateTime/Format/Epoch/ActiveDirectory.pm
     version: 0.13
@@ -32,6 +33,9 @@ provides:
   DateTime::Format::Epoch::MacOS:
     file: lib/DateTime/Format/Epoch/MacOS.pm
     version: 0.13
+  DateTime::Format::Epoch::NTP:
+    file: lib/DateTime/Format/Epoch/NTP.pm
+    version: 0.14
   DateTime::Format::Epoch::RJD:
     file: lib/DateTime/Format/Epoch/RJD.pm
     version: 0.13
@@ -52,7 +56,8 @@ requires:
   Math::BigInt: 1.66
   Params::Validate: 0
   perl: 5.00503
+  warnings: 0
 resources:
   license: http://dev.perl.org/licenses/
   repository: http://github.com/chorny/DateTime-Format-Epoch
-version: 0.13
+version: 0.15

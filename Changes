@@ -1,5 +1,11 @@
 Revision history for Perl module DateTime::Format::Epoch
 
+0.15  2015-04-12
+    - Forgot to update MANIFEST
+
+0.14  2015-04-12
+    - NTP epoch added (Michiel Beijen)
+
 0.13  2010-08-25
     - GMP is used in two places, so fix second
 

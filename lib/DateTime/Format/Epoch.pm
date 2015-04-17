@@ -5,7 +5,7 @@ use strict;
 
 use vars qw($VERSION);
 
-$VERSION = '0.13';
+$VERSION = '0.15';
 
 use DateTime 0.22;
 use DateTime::LeapSecond;
