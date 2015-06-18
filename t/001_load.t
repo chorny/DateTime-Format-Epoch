@@ -1,5 +1,6 @@
 # t/001_load.t - check module loading
 
+use strict;
 use Test::More tests => 1;
 
 BEGIN { use_ok( 'DateTime::Format::Epoch' ); }
